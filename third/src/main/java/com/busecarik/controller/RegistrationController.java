@@ -9,10 +9,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RegistrationController {
 
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String showRegisterPage(Model model) {
         model.addAttribute("user", new User());
         return "registration";
+    }
+
+    @RequestMapping(value = "postRegistration", method = RequestMethod.POST)
+    public String addNewUser() {
+        return "login";
     }
 
 }

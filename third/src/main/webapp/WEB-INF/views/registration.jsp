@@ -24,7 +24,7 @@
 <br>
     <h2>Registration Page</h2>
 
-    <form action="/registration" method="post">
+    <form action="/postRegistration" method="post">
         <table>
             <tr>
                 <td>Username</td>

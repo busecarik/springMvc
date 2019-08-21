@@ -1,12 +1,11 @@
 package com.busecarik.dao;
 
 import com.busecarik.model.User;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
@@ -15,20 +14,19 @@ public class UserDaoImp implements UserDao {
     private SessionFactory sessionFactory;
 
     @Override
-    @SuppressWarnings("unchecked")
     public User findUserByUsername(String username) {
-        List<User> users = new ArrayList<User>();
 
-        users = sessionFactory.getCurrentSession()
-                .createQuery("from User where username=?")
-                .setParameter(0, username)
-                .list();
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from User u where u.username =:username");
+        query.setString("username", username);
 
-        if (users.size() > 0) {
-            return users.get(0);
-        } else {
-            return null;
-        }
+        return (User) query.uniqueResult();
 
+    }
+
+    @Override
+    public void save(User user) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(user);
     }
 }

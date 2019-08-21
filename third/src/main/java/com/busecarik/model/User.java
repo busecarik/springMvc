@@ -17,7 +17,6 @@ public class User {
     @NotNull
     @Column(name = "password", nullable = false)
     private String password;
-    private String matchingPassword;
 
     @Column(name = "birthday")
     private String birthday;
@@ -45,14 +44,6 @@ public class User {
         this.sex = sex;
         this.enabled = enabled;
         this.authorities = authorities;
-    }
-
-    public String getMatchingPassword() {
-        return matchingPassword;
-    }
-
-    public void setMatchingPassword(String matchingPassword) {
-        this.matchingPassword = matchingPassword;
     }
 
     public String getUsername() {
