@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: buse1
@@ -9,6 +11,7 @@
 <html>
 <head>
     <title>Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 </head>
 
 <style>
@@ -24,7 +27,7 @@
 <br>
     <h2>Registration Page</h2>
 
-    <form action="/postRegistration" method="post">
+    <form:form action="${pageContext.request.contextPath}/postRegistration" modelAttribute="userDto" method="post">
         <table>
             <tr>
                 <td>Username</td>
@@ -51,12 +54,26 @@
             </tr>
             <tr>
                 <td>Password Confirmation</td>
-                <td><input type="password" name="password_confirm"></td>
+                <td><input type="password" name="matchingPassword"></td>
             </tr>
+
+            <c:if test="${usernameError != null}">
+                <tr>
+                    <td style="color: red; text-align: center">${usernameError}</td>
+                </tr>
+            </c:if>
+            <c:if test="${emailError != null}">
+                <tr>
+                    <td style="color: red; text-align: center">${emailError}</td>
+                </tr>
+            </c:if>
+
         </table>
         <br>
         <input style="alignment: center" type="submit" value="Sign up" />
-    </form>
+
+
+    </form:form>
 
 </body>
 </html>

@@ -1,7 +1,6 @@
 package com.busecarik.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.busecarik.service.UserService;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,7 +8,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -17,16 +15,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @ComponentScan("com.busecarik.*")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private UserService userDetailsService;
 
-    private UserDetailsService userDetailsService;
-
-    @Autowired
-    public SecurityConfig(@Qualifier("userDetailsService") UserDetailsService userDetailsService) {
+    public SecurityConfig(UserService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
+        //TODO: bycrpt versiyona geçir
         try {
             auth.userDetailsService(userDetailsService);
         } catch (Exception e) {

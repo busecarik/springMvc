@@ -14,6 +14,7 @@ public class HomeController {
 
     @RequestMapping(value = "/list-users", method = RequestMethod.GET)
     public String showUsers() {
+
         return "list-users";
     }
 

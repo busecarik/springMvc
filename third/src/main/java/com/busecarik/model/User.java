@@ -1,7 +1,6 @@
 package com.busecarik.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,18 +9,15 @@ import java.util.Set;
 public class User {
 
     @Id
-    @NotNull
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @NotNull
     @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "birthday")
     private String birthday;
 
-    @NotNull
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
@@ -35,6 +31,15 @@ public class User {
     private Set<Authorities> authorities = new HashSet<>();
 
     public User() {}
+
+    public User(String username, String password, String birthday, String email, int sex, boolean enabled) {
+        this.username = username;
+        this.password = password;
+        this.birthday = birthday;
+        this.email = email;
+        this.sex = sex;
+        this.enabled = enabled;
+    }
 
     public User(String username, String password, String birthday, String email, int sex, boolean enabled, Set<Authorities> authorities) {
         this.username = username;

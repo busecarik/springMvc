@@ -1,9 +1,9 @@
 package com.busecarik.service;
 
+import com.busecarik.UserDto.UserDto;
 import com.busecarik.dao.UserDao;
 import com.busecarik.model.Authorities;
 import com.busecarik.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,13 +17,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
-@Service("userDetailsService")
+@Service
 public class UserDetailsServiceImpl implements UserService {
 
-    @Autowired
-    private UserDao userDao;
+    private final UserDao userDao;
 
     private Logger logger = Logger.getLogger(getClass().getName());
+
+    public UserDetailsServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Transactional(readOnly=true)
     @Override
@@ -46,7 +49,6 @@ public class UserDetailsServiceImpl implements UserService {
 
         Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
 
-        // Build user's authorities
         for (Authorities userRole : userRoles) {
             setAuths.add(new SimpleGrantedAuthority(userRole.getAuthority()));
         }
@@ -56,10 +58,38 @@ public class UserDetailsServiceImpl implements UserService {
         return Result;
     }
 
+    @Override
+    @Transactional
+    public User findByUserName(String userName) {
+        return userDao.findUserByUsername(userName);
+    }
+
+    @Transactional
+    @Override
+    public User findByEmail(String email) {
+        return userDao.findUserByEmail(email);
+    }
+
+    @Transactional
+    @Override
+    public void save(UserDto userDto) {
+        Set<Authorities> authorities = new HashSet<>();
+        String sex = userDto.getSex();
+
+        User user = new User(userDto.getUsername(),
+                "{noop}" +userDto.getPassword(),
+                userDto.getBirthday(),
+                userDto.getEmail(),
+                (sex.equals("female")) ? 1 : 0,
+                true
+        );
+        authorities.add(new Authorities("ROLE_user", user));
+        user.setAuthorities(authorities);
+        userDao.save(user);
+    }
 
     @Override
-    public void save(User user) {
-        User newUser = new User();
-
+    public List<User> listUsers() {
+        return userDao.listUsers();
     }
 }
