@@ -31,6 +31,7 @@
         <table>
             <tr>
                 <td>Username</td>
+                <form:errors path="username" />
                 <td><input type="text" name="username" /></td>
             </tr>
             <tr>
@@ -67,7 +68,11 @@
                     <td style="color: red; text-align: center">${emailError}</td>
                 </tr>
             </c:if>
-
+            <c:if test="${passwordError != null}">
+                <tr>
+                    <td style="color: red; text-align: center">${passwordError}</td>
+                </tr>
+            </c:if>
         </table>
         <br>
         <input style="alignment: center" type="submit" value="Sign up" />

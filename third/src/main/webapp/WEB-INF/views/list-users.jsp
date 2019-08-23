@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -35,22 +36,24 @@
             </tr>
         </thead>
         <tbody>
-
+        <c:forEach var="user" items="${users}">
+            <tr>
+                <td>${user.username}</td>
+                <td>${user.email}</td>
+                <td>${user.birthday}</td>
+                <td><c:out value="${user.sex == 1 ? 'female' : 'male'}"/></td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
-
-
-    <security:authorize access="hasRole('admin')">
 
         <br>
 
         <input type="submit" value="Print Table" />
 
-    </security:authorize>
-
     <br><br>
 
-    <a href="${pageContext.request.contextPath}/home">Back to Home</a>
+    <a href="${pageContext.request.contextPath}/print">Back to Home</a>
 
 </body>
 </html>

@@ -4,7 +4,6 @@ import com.busecarik.validation.FieldMatch;
 import com.busecarik.validation.ValidEmail;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")
@@ -12,20 +11,16 @@ import javax.validation.constraints.Size;
 public class UserDto {
 
     @NotNull(message = "is required")
-    @Size(min = 1, message = "is required")
     private String username;
 
     @NotNull(message = "is required")
-    @Size(min = 1, message = "is required")
     private String password;
 
     @NotNull(message = "is required")
-    @Size(min = 1, message = "is required")
     private String matchingPassword;
 
     @ValidEmail
     @NotNull(message = "is required")
-    @Size(min = 1, message = "is required")
     private String email;
 
     private String birthday;

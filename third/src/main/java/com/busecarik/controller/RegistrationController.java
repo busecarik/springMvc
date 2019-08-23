@@ -40,19 +40,16 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "postRegistration", method = RequestMethod.POST)
-    public String addNewUser(@Valid @ModelAttribute("userDto") UserDto userDto,
-                             BindingResult theBindingResult,
-                             Model theModel) {
-
-        String userName = userDto.getUsername();
-        String email = userDto.getEmail();
+    public String addNewUser(@Valid @ModelAttribute("userDto") UserDto userDto, BindingResult theBindingResult, Model theModel) {
 
         if (theBindingResult.hasErrors()){
+            theModel.addAttribute("userDto", new UserDto());
+            theModel.addAttribute("passwordError", "Passwords are not matched!");
             return "registration";
         }
 
-        User existUsername = userService.findByUserName(userName);
-        User existEmail = userService.findByEmail(email);
+        User existUsername = userService.findByUserName(userDto.getUsername());
+        User existEmail = userService.findByEmail(userDto.getEmail());
 
         if(existUsername != null || existEmail != null) {
             if (existUsername != null) {
@@ -69,5 +66,4 @@ public class RegistrationController {
         userService.save(userDto);
         return "login";
     }
-
 }

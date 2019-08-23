@@ -29,9 +29,7 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
             valid =  firstObj == null && secondObj == null || firstObj != null && firstObj.equals(secondObj);
         }
         catch (final Exception ignore)
-        {
-            // we can ignore
-        }
+        {}
 
         if (!valid){
             context.buildConstraintViolationWithTemplate(message)
