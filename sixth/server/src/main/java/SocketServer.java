@@ -83,7 +83,7 @@ public class SocketServer {
 
     private int randomNumberGenerator() {
         Random random = new Random();
-        return random.nextInt(9);
+        return random.nextInt(10);
     }
 
     private String isCorrect(int guess) {
