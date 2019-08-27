@@ -6,18 +6,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="second" />
+        <module name="fourth-server" />
         <module name="fourth-client" />
-        <module name="fourthserver" />
         <module name="server" />
         <module name="first" />
         <module name="client" />
         <module name="third" />
       </profile>
+      <profile name="Annotation profile for modularProject" enabled="true">
+        <sourceOutputDir name="../second2/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../second2/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="second" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="fourth-client" target="1.5" />
       <module name="fourthclient" target="1.5" />
+      <module name="second" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

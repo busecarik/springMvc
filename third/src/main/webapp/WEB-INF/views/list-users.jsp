@@ -53,7 +53,7 @@
 
     <br><br>
 
-    <a href="${pageContext.request.contextPath}/print">Back to Home</a>
+    <a href="${pageContext.request.contextPath}/home">Back to Home</a>
 
 </body>
 </html>
