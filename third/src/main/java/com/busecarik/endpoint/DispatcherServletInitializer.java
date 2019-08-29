@@ -1,4 +1,4 @@
-package com.busecarik.config;
+package com.busecarik.endpoint;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

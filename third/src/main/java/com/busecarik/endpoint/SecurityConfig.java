@@ -1,4 +1,4 @@
-package com.busecarik.config;
+package com.busecarik.endpoint;
 
 import com.busecarik.service.UserService;
 import org.springframework.context.annotation.ComponentScan;

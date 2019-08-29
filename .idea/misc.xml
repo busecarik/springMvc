@@ -13,11 +13,12 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/fourth/fourth-client/pom.xml" />
+        <option value="$PROJECT_DIR$/fourth/pom.xml" />
         <option value="$PROJECT_DIR$/second/pom.xml" />
       </set>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_12" project-jdk-name="12" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_12" default="true" project-jdk-name="12" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
